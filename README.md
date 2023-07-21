@@ -33,7 +33,9 @@ Finally the project server will start and you can open it in your browser by goi
 
 #
 
-#### What you'll learn
+#### What you'll learn - We'll update this section in future
+
+#
 
 To we will see what is a how to create and use components the right way
 
