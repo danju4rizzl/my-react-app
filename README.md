@@ -1,3 +1,40 @@
+# React Fundamentals
+
+### Setting up the project
+
+To get started clone the repo by running the following command in your terminal:
+
+```
+git clone https://github.com/danju4rizzl/my-react-app.git
+```
+
+After you have cloned the repo you can now change directory into the project with:
+
+```
+cd my-react-app
+```
+
+When you get into the project directory you can run the following command, this will install all the dependencies the project needs to work correctly:
+
+```
+npm install
+```
+
+or
+
+```
+pnpm install (recommended)
+```
+
+After installing the dependencies, start the development server:
+`pnpm dev` or `npm run dev`
+
+Finally the project server will start and you can open it in your browser by going to: `http://localhost:3000`
+
+#
+
+#### What you'll learn
+
 To we will see what is a how to create and use components the right way
 
 ```
