@@ -131,3 +131,126 @@ function Garage() {
 }
 
 ```
+
+You can add a simple to complex form in react. Below is a simple Form component.
+
+```
+function MyForm() {
+  return (
+    <form>
+      <label>Enter your name:
+        <input type="text" />
+      </label>
+    </form>
+  )
+}
+```
+
+To use the form, we need to `handle` the form events. Unlike HTML our Form React Component will handle the data from the Form.
+
+```
+function MyForm() {
+  const [name, setName] = useState("");
+
+  return (
+    <form>
+      <label>Enter your name:
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+      </label>
+    </form>
+  )
+}
+```
+
+We can use the `useState() Hook` to keep track of each inputs value and provide a "single source of truth" for the entire application.
+
+There are 3 main ways to style your react application.
+
+- Inline styling
+
+```
+<h1 style={{color: "red"}}>Hello World 👋</h1>
+```
+
+- CSS stylesheets
+
+```
+const Header = () => {
+  // Define an object with css styles in it.
+  const myStyle = {
+    color: "white",
+    fontFamily: "Sans-Serif",
+    backgroundColor: "red",
+    padding: "15px"
+  };
+
+
+  return (
+    <>
+      {/* simply add the object here */}
+      <h1 style={myStyle}>Hello Style!</h1>
+      <p>Add a little style!</p>
+    </>
+  );
+}
+```
+
+- CSS with a septate file -
+  You need to create a .css file with the name of the component... eg: `App.css` or `BannerComponent.css` (note the camelCase)
+
+```
+ .banner {
+	font-size: 50px;
+	color: green;
+	text-align: center;
+}
+
+
+```
+
+Now that we have a css file we can use it 👇.
+
+```
+import './titleExample.css';
+
+const TitleWithStylesClassName = () => {
+	return <h1 className="banner">Hello world</h1>
+}
+
+```
+
+Hooks make function component have react features such as `State`, `Side Effects` and more. You can also create a custom hook for yourself.
+
+```
+import { useState } from "react";
+
+function FavoriteColor() {
+  const [color, setColor] = useState("red");
+
+  return (
+    <>
+      <h1>My favorite color is {color}!</h1>
+      <button
+        type="button"
+        onClick={() => setColor("blue")}
+      >Blue</button>
+      <button
+        type="button"
+        onClick={() => setColor("red")}
+      >Red</button>
+      <button
+        type="button"
+        onClick={() => setColor("pink")}
+      >Pink</button>
+      <button
+        type="button"
+        onClick={() => setColor("green")}
+      >Green</button>
+    </>
+  );
+}
+```
