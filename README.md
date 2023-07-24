@@ -37,6 +37,8 @@ Finally the project server will start and you can open it in your browser by goi
 
 #
 
+### React Function component
+
 To we will see what is a how to create and use components the right way
 
 ```
@@ -44,6 +46,8 @@ function Car(props) {
   return <h2>I am a {props.color} Car!</h2>;
 }
 ```
+
+### React Props
 
 Props are arguments passed into React components.
 
@@ -53,6 +57,8 @@ function Car(props) {
 }
 
 ```
+
+### React Events
 
 React can perform actions based on user events.
 
@@ -67,6 +73,8 @@ function Football() {
   );
 }
 ```
+
+### Conditional rendering
 
 We can use the if JavaScript operator to decide which component to render.
 
@@ -110,8 +118,16 @@ const cars = ['Ford', 'BMW', 'Audi'];
 
 ```
 
-In React, you will render lists with some type of loop.
-NOTE: react list always need "key props"
+### Rendering Lists
+
+In React, you can render (show) lists with any type of loop.
+NOTE:
+
+#
+
+⚠️ React lists always need `key` props
+
+#
 
 ```
 function Car(props) {
@@ -132,7 +148,9 @@ function Garage() {
 
 ```
 
-You can add a simple to complex form in react. Below is a simple Form component.
+### Forms
+
+You can add a simple or complex form in react simply. Below is a simple Form component.
 
 ```
 function MyForm() {
@@ -167,6 +185,8 @@ function MyForm() {
 ```
 
 We can use the `useState() Hook` to keep track of each inputs value and provide a "single source of truth" for the entire application.
+
+### Styling
 
 There are 3 main ways to style your react application.
 
@@ -208,11 +228,9 @@ const Header = () => {
 	color: green;
 	text-align: center;
 }
-
-
 ```
 
-Now that we have a css file we can use it 👇.
+Now that we have a css file we can use it 👇
 
 ```
 import './titleExample.css';
@@ -223,7 +241,9 @@ const TitleWithStylesClassName = () => {
 
 ```
 
-Hooks make function component have react features such as `State`, `Side Effects` and more. You can also create a custom hook for yourself.
+### Hooks (coming soon) 😑
+
+<!-- Hooks make function component have react features such as `State`, `Side Effects` and more. You can also create a custom hook for yourself.
 
 ```
 import { useState } from "react";
@@ -253,4 +273,4 @@ function FavoriteColor() {
     </>
   );
 }
-```
+``` -->
