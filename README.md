@@ -241,14 +241,14 @@ const TitleWithStylesClassName = () => {
 
 ```
 
-### Hooks (coming soon) 😑
+### Hooks
 
-<!-- Hooks make function component have react features such as `State`, `Side Effects` and more. You can also create a custom hook for yourself.
+Hooks make function component have react features such as `State`, `Side Effects` and more. You can also create a custom hook for yourself.
 
 ```
 import { useState } from "react";
 
-function FavoriteColor() {
+function FavoriteColorExample() {
   const [color, setColor] = useState("red");
 
   return (
@@ -273,4 +273,4 @@ function FavoriteColor() {
     </>
   );
 }
-``` -->
+```

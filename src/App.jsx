@@ -1,15 +1,9 @@
-import {
-	TitleWithInline,
-	TitleWithStyleObject,
-	TitleWithStylesClassName
-} from "./components/TitleExample"
+import FavoriteColorExample from "./components/FavoriteColorExample"
 
 function App() {
 	return (
 		<>
-			<TitleWithInline />
-			<TitleWithStyleObject />
-			<TitleWithStylesClassName />
+			<FavoriteColorExample />
 		</>
 	)
 }
