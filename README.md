@@ -274,3 +274,140 @@ function FavoriteColorExample() {
   );
 }
 ```
+
+- useState Hook:
+  This hook allows us to handle the state of our application in a function component. To use it we first need to `Initialize` the `useState` hook. In the example below we are setting the initial value to "Black" inside the useState Hook.
+
+```
+import { useState } from "react";
+
+function FavoriteColorExample() {
+  const [color, setColor] = useState("Black");
+}
+```
+
+Now we can `read` the state in our component.
+
+```
+import { useState } from "react";
+
+function FavoriteColor() {
+  const [color, setColor] = useState("Black");
+
+{/* We are reading the color state */}
+  return <h1>My favorite color is {color}!</h1>
+}
+
+```
+
+We can also `update` our state's value like this:
+
+```
+import { useState } from "react";
+
+function FavoriteColor() {
+  const [color, setColor] = useState("black");
+
+  return (
+    <>
+      <h1>My favorite color is {color}!</h1>
+      <button
+        type="button"
+        onClick={() => setColor("blue")}
+      >Blue</button>
+    </>
+  )
+}
+```
+
+⚠️ **NEVER** update your
+state like: `color = "green"` it will give you an error.⚠️
+
+We can also store objects, arrays, strings, numbers, booleans...This also means that we can create as many `state hooks` as we want give and track them individually.
+
+```
+import { useState } from "react";
+
+function Car() {
+  const [brand, setBrand] = useState("Toyota");
+  const [model, setModel] = useState("Rav4");
+  const [year, setYear] = useState("2020");
+  const [color, setColor] = useState("purple");
+
+  return (
+    <>
+      <h1>My {brand}</h1>
+      <p>
+        It is a {color} {model} from {year}.
+      </p>
+    </>
+  )
+}
+
+```
+
+Or we can just store the values inside an object like this:
+
+```
+import { useState } from "react";
+
+function Car() {
+  const [car, setCar] = useState({
+    brand: "Toyota",
+    model: "Rav4",
+    year: "2020",
+    color: "purple"
+  });
+
+  return (
+    <>
+      <h1>My {car.brand}</h1>
+      <p>
+        It is a {car.color} {car.model} from {car.year}.
+      </p>
+    </>
+  )
+}
+
+```
+
+To update a state that has an `Array` or `Object` inside the `useState` hook, we need to pass in a function that exposes the values of the `previous state`, then we can update the state we want. Here is an example below: 👇
+
+```
+import { useState } from "react";
+
+function Car() {
+  const [car, setCar] = useState({
+    brand: "Toyota",
+    model: "Rav4",
+    year: "2020",
+    color: "purple"
+  });
+
+  const updateModel = () => {
+    setCar(previousState => {
+      return { ...previousState, model: "Corolla" }
+    });
+  }
+
+  return (
+    <>
+      <h1>My {car.brand}</h1>
+      <p>
+        It is a {car.color} {car.model} from {car.year}.
+      </p>
+      <button
+        type="button"
+        onClick={updateModel}
+      >Corolla</button>
+    </>
+  )
+}
+
+```
+
+Using this approach, we passed a function into our setCar function. This function receives the previous value (object inside our state).
+
+Then we returned an object, using the `...spread ` operator for the previousState and overwriting only the model.
+
+If we didn't do it this way we would be overriding the entire state in this case (object inside our state).
