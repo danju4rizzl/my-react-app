@@ -411,3 +411,108 @@ Using this approach, we passed a function into our setCar function. This functio
 Then we returned an object, using the `...spread ` operator for the previousState and overwriting only the model.
 
 If we didn't do it this way we would be overriding the entire state in this case (object inside our state).
+
+- useEffect: This hook allows you to perform `side effects` in your components. Ex: running a timer or fetching data from an API (Application Programming Interface)
+
+`useEffect` accepts two arguments.
+
+```
+useEffect(<Function>, <dependency>)
+```
+
+The second argument the (dependency) is optional, but you must know how and when to use it.
+
+⚠️Don't run the code below, I will hang your computer ⚠️
+
+```
+import { useState, useEffect } from "react";
+
+function Timer() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setCount((count) => count + 1);
+    }, 1000);
+  });
+
+  return <h1>I've shown {count} times! 👈</h1>;
+}
+```
+
+Because `useEffect` runs on every render, this makes our code rerender every second 😕.
+
+To handle this problem we need to include the second parameter as an `Array` . This `array` can be optionally `empty` or we can pass in the `state` or `props` .
+
+Let's break it down with code to understand the effects 😎.
+
+###### When no dependency passed as the second parameter:
+
+```
+useEffect(() => {
+  // Runs on every render⚠️
+});
+```
+
+###### When an empty array is passed as the dependency
+
+```
+useEffect(() => {
+  // Runs only on the first render
+  // eg: when the page loads or component mounts 🚀
+}, []);
+```
+
+###### When we pass `props` or `state` values into our dependency array
+
+```
+useEffect(() => {
+  //Runs on the first render
+  //And any time any dependency value changes 🔥
+}, [prop, state]);
+```
+
+To fix the previous issue we had because we didn't add our dependency array
+
+```
+import { useState, useEffect } from "react";
+
+function Timer() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setCount((count) => count + 1);
+    }, 1000);
+  }, []); // <- added our empty array
+
+  return <h1>I've showed {count} times!</h1>;
+}
+
+```
+
+And if we wanted to run the code whenevever the count state changed, we would do it like this
+
+```
+import { useState, useEffect } from "react";
+
+function Counter() {
+  const [count, setCount] = useState(0);
+  const [calculation, setCalculation] = useState(0);
+
+  useEffect(() => {
+    setCalculation(() => count * 2);
+  }, [count]); // <- added our count state
+
+  return (
+    <>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount((c) => c + 1)}>+</button>
+      <p>Calculation: {calculation}</p>
+    </>
+  );
+}
+
+```
+
+If the useEffect depends multiple states and props, you need to add them to the dependency array.
