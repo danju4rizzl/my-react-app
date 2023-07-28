@@ -1,9 +1,9 @@
-import CarExample from "./components/CarExample"
+import TimerExample from "./components/TimerExample"
 
 function App() {
 	return (
 		<>
-			<CarExample />
+			<TimerExample />
 		</>
 	)
 }
