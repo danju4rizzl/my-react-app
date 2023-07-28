@@ -1,9 +1,9 @@
-import TimerExample from "./components/TimerExample"
+import CounterExample from "./components/CounterExample"
 
 function App() {
 	return (
 		<>
-			<TimerExample />
+			<CounterExample />
 		</>
 	)
 }
