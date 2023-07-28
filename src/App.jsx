@@ -1,9 +1,9 @@
-import CounterExample from "./components/CounterExample"
+import ContextExample from "./components/ContextExample"
 
 function App() {
 	return (
 		<>
-			<CounterExample />
+			<ContextExample />
 		</>
 	)
 }
