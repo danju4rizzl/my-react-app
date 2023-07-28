@@ -1,9 +1,9 @@
-import FavoriteColorExample from "./components/FavoriteColorExample"
+import CarExample from "./components/CarExample"
 
 function App() {
 	return (
 		<>
-			<FavoriteColorExample />
+			<CarExample />
 		</>
 	)
 }

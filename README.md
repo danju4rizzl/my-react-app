@@ -275,7 +275,7 @@ function FavoriteColorExample() {
 }
 ```
 
-- useState Hook:
+- ## useState hook:
   This hook allows us to handle the state of our application in a function component. To use it we first need to `Initialize` the `useState` hook. In the example below we are setting the initial value to "Black" inside the useState Hook.
 
 ```
@@ -412,7 +412,8 @@ Then we returned an object, using the `...spread ` operator for the previousStat
 
 If we didn't do it this way we would be overriding the entire state in this case (object inside our state).
 
-- useEffect: This hook allows you to perform `side effects` in your components. Ex: running a timer or fetching data from an API (Application Programming Interface)
+- ## useEffect hook:
+  This hook allows you to perform `side effects` in your components. Ex: running a timer or fetching data from an API (Application Programming Interface)
 
 `useEffect` accepts two arguments.
 
@@ -422,7 +423,7 @@ useEffect(<Function>, <dependency>)
 
 The second argument the (dependency) is optional, but you must know how and when to use it.
 
-⚠️Don't run the code below, I will hang your computer ⚠️
+⚠️Don't run the code below yet! It will hang your computer in an infinite loop⚠️
 
 ```
 import { useState, useEffect } from "react";
@@ -491,7 +492,7 @@ function Timer() {
 
 ```
 
-And if we wanted to run the code whenevever the count state changed, we would do it like this
+And if we wanted to run the code whenever the count state changed, we would do it like this
 
 ```
 import { useState, useEffect } from "react";
@@ -516,3 +517,198 @@ function Counter() {
 ```
 
 If the useEffect depends multiple states and props, you need to add them to the dependency array.
+
+Finally we can avoid memory leaks in our code by cleanups our useEffect(). Let's see how to do that with the previous example.
+
+```
+import { useState, useEffect } from "react";
+
+function Timer() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    let myTimer = setTimeout(() => {
+      setCount((count) => count + 1);
+    }, 1000);
+    return () =>  clearTimeout(myTimer)
+  }, []); // <- added our empty array
+
+  return <h1>I've showed {count} times!</h1>;
+}
+
+```
+
+- ## useContext hook:
+
+  To understand the `useContext` hook we must first know why we need it. The `context API` from `React` is a way for us to manage state globally.
+
+  We use the `useContext` with the `useState` to share state between deeply nested components to make our code update or read state easier.
+
+Here is an example of a deeply nested component:
+
+```
+import { useState } from "react";
+
+function Component1() {
+  const [user, setUser] = useState("Jesse Hall");
+
+  return (
+    <>
+      <h1>{`Hello ${user}!`}</h1>
+      <Component2 user={user} />
+    </>
+  );
+}
+
+function Component2({ user }) {
+  return (
+    <>
+      <h1>Component 2</h1>
+      <Component3 user={user} />
+    </>
+  );
+}
+
+function Component3({ user }) {
+  return (
+    <>
+      <h1>Component 3</h1>
+      <Component4 user={user} />
+    </>
+  );
+}
+
+function Component4({ user }) {
+  return (
+    <>
+      <h1>Component 4</h1>
+      <Component5 user={user} />
+    </>
+  );
+}
+
+function Component5({ user }) {
+  return (
+    <>
+      <h1>Component 5</h1>
+      <h2>{`Hello ${user} again!`}</h2>
+    </>
+  );
+}
+
+```
+
+Since our state should be held in the highest parent component ie: `<Component1/>`
+we need to pass the state as props down to `<Component5>` form the example 👆 this is called `prop drilling`. And it would be a nightmare if we had to more 😵‍💫 nested components.
+
+To solve this, we need to give our react application a `Context`
+
+Let's `create` and `initialize` our context first!
+
+```
+import { useState, createContext } from "react";
+
+
+const UserContext = createContext()
+```
+
+Then we need to use the `Context Provider` to wrap the `component tree` that needs the state `Context` like so:
+
+```
+function Component1() {
+  const [user, setUser] = useState("DeejayDev");
+
+  return (
+    <UserContext.Provider value={user}>
+      <h1>{`Hello ${user}!`}</h1>
+      <Component2 user={user} />
+    </UserContext.Provider>
+  );
+}
+```
+
+With this update to the code, now all the components in this `tree` will have access to the user Context we created.
+
+To use this `Context` inside a child component we need to access it with the `useContext` in the child component we want to use the state
+
+```
+import { useState, createContext, useContext } from "react";
+```
+
+Now we can access the `Context` in all `children` components like this 👇:
+
+```
+function Component5() {
+  const user = useContext(UserContext);
+
+  return (
+    <>
+      <h1>Component 5</h1>
+      <h2>{`Hello ${user} again!`}</h2>
+    </>
+  );
+}
+```
+
+Let's see full code example using the `Context API` to avoid `prop drilling`
+
+```
+import { useState, createContext, useContext } from "react";
+import ReactDOM from "react-dom/client";
+
+const UserContext = createContext();
+
+function Component1() {
+  const [user, setUser] = useState("Jesse Hall");
+
+  return (
+    <UserContext.Provider value={user}>
+      <h1>{`Hello ${user}!`}</h1>
+      <Component2 />
+    </UserContext.Provider>
+  );
+}
+
+function Component2() {
+  return (
+    <>
+      <h1>Component 2</h1>
+      <Component3 />
+    </>
+  );
+}
+
+function Component3() {
+  return (
+    <>
+      <h1>Component 3</h1>
+      <Component4 />
+    </>
+  );
+}
+
+function Component4() {
+  return (
+    <>
+      <h1>Component 4</h1>
+      <Component5 />
+    </>
+  );
+}
+
+function Component5() {
+  const user = useContext(UserContext);
+
+  return (
+    <>
+      <h1>Component 5</h1>
+      <h2>{`Hello ${user} again!`}</h2>
+    </>
+  );
+}
+
+```
+
+- ## useRef hook (Coming soon)
+- ## useReducer hook (Coming soon)
+- ## Building your custom hook (Coming soon)
