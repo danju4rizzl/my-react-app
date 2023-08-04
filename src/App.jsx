@@ -1,9 +1,9 @@
-import ContextExample from "./components/ContextExample"
+import TaskManagerApp from "./components/task-manager-app/TaskManagerApp"
 
 function App() {
 	return (
 		<>
-			<ContextExample />
+			<TaskManagerApp />
 		</>
 	)
 }
