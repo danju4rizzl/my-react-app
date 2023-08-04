@@ -1,11 +1,35 @@
 # React Fundamentals
 
-### Setting up the project
+### Before getting started ⚠️
 
-To get started clone the repo by running the following command in your terminal:
+To setup this project locally, you need to have the following installed:
+
+- Install Node.js from https://nodejs.org 👈
+- Install pnpm https://pnpm.io ❤️‍🔥 (optional)
+
+  To check if you have node.js installed? use the following in your terminal: `node -v` or `pnpm -v`
+
+```
+$ node -v
+v18.16.1
+```
+
+```
+$ pnpm -v
+8.6.3
+```
+
+⚠️**Note:** `pnpm` will not work if you don't have `node.js` + `pnpm` installed.
+
+If you ran the above commands, and it returned a version number then, you can move to the next step Clone the repo, if not, ask our TG community for support 🖐️
+
+### Clone the repo
+
+Let Clone the projects repository by running the following command in your terminal:
 
 ```
 git clone https://github.com/danju4rizzl/my-react-app.git
+
 ```
 
 After you have cloned the repo you can now change directory into the project with:
@@ -23,11 +47,21 @@ npm install
 or
 
 ```
-pnpm install (recommended)
+## if pnpm is installed ##
+pnpm install
 ```
 
-After installing the dependencies, start the development server:
-`pnpm dev` or `npm run dev`
+After installing the dependencies, let's `start` the development `server` by running:
+
+```
+npm run dev
+```
+
+or, if you already have pnpm installed ✊:
+
+```
+pnpm dev
+```
 
 Finally the project server will start and you can open it in your browser by going to: `http://localhost:3000`
 
